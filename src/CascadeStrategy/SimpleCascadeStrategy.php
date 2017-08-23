@@ -4,11 +4,11 @@ namespace Edweld\AclBundle\CascadeStrategy;
 
 use Doctrine\ORM\EntityManager;
 use Mobile5\AclBundle\Entity\Authorization;
-use Mobile5\AclBundle\Entity\ResourceInterface;
-use Mobile5\AclBundle\Repository\AuthorizationRepository;
-use Mobile5\AclBundle\ResourceGraph\CascadingResourceGraphTraverser;
-use Mobile5\AclBundle\ResourceGraph\ResourceGraphTraverser;
-use Mobile5\AclBundle\ResourceGraph\ResourceGraphTraverserDispatcher;
+use Edweld\AclBundle\Entity\ResourceInterface;
+use Edweld\AclBundle\Repository\AuthorizationRepository;
+use Edweld\AclBundle\ResourceGraph\CascadingResourceGraphTraverser;
+use Edweld\AclBundle\ResourceGraph\ResourceGraphTraverser;
+use Edweld\AclBundle\ResourceGraph\ResourceGraphTraverserDispatcher;
 
 /**
  * Simple cascade: authorizations are cascaded from a resource to its sub-resources.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mobile5\AclBundle\Doctrine;
+namespace Edweld\AclBundle\Doctrine;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\OnFlushEventArgs;

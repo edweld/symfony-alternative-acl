@@ -24,5 +24,4 @@
     "autoload": {
         "psr-4": { "Edweld\\AclBundle\\": "" }
     },
-    "target-dir": "src"
 }
