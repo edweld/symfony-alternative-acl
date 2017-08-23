@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mobile5_acl');
+        $rootNode = $treeBuilder->root('edweld_acl');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
