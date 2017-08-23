@@ -20,6 +20,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('edweld_acl');
+        $rootNode
+            ->children()
+                ->arrayNode('identities')
+                    ->beforeNormalization()->ifString()->then(function ($v) { return array($v); })->end()
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end();
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
