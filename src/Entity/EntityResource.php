@@ -1,6 +1,6 @@
 <?php
 
-namespace Mobile5\AclBundle\Entity;
+namespace Edweld\AclBundle\Entity;
 
 use Edweld\AclBundle\Entity\ResourceInterface;
 
