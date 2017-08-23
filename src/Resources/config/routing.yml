@@ -1,0 +1,3 @@
+#mobile5_acl_homepage:
+#    path:     /
+#    defaults: { _controller: Mobile5AclBundle:Default:index }
