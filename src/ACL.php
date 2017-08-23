@@ -53,7 +53,7 @@ class ACL
         $aclSetup = new ACLSetup($this->entityManager);
 
         $acl = new ACL($this->entityManager);
-        $aclSetup->setSecurityIdentityClass('Mobile5\AclBundle\Entity\SecurityIdentityInterface');
+        $aclSetup->setSecurityIdentityClass('Edweld\AclBundle\Entity\SecurityIdentityInterface');
 
         $aclSetup->registerRoleClass('AppBundle\Role\CircleViewerRole', 'circleViewer');
         $aclSetup->registerRoleClass('AppBundle\Role\CircleEditorRole', 'circleEditor');
@@ -79,7 +79,7 @@ class ACL
     public function isAllowed( $identity, $action, ResourceInterface $resource)
     {
         /** @var AuthorizationRepository $repo */
-        $repo = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Authorization');
+        $repo = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Authorization');
         if ($resource instanceof EntityResource) {
             return $repo->isAllowedOnEntity($identity, $action, $resource);
         } elseif ($resource instanceof ClassResource) {
@@ -111,7 +111,7 @@ class ACL
         }
 
         /** @var AuthorizationRepository $repository */
-        $repository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Authorization');
+        $repository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Authorization');
 
         $repository->insertBulk($authorizations);
     }
@@ -173,7 +173,7 @@ class ACL
         $cascadedAuthorizations = $this->cascadeStrategy->processNewResource($resource);
 
         /** @var AuthorizationRepository $repository */
-        $repository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Authorization');
+        $repository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Authorization');
 
         $repository->insertBulk($cascadedAuthorizations);
     }
@@ -188,7 +188,7 @@ class ACL
     public function processDeletedResource(EntityResource $resource)
     {
         /** @var AuthorizationRepository $repository */
-        $repository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Authorization');
+        $repository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Authorization');
 
         $repository->removeAuthorizationsForResource($resource);
     }
@@ -201,7 +201,7 @@ class ACL
     public function rebuildAuthorizationsForResource(EntityResource $resource)
     {
         /** @var RoleRepository $roleRepository */
-        $roleRepository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Role');
+        $roleRepository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Role');
         // Get all Role applied directly on the Resource.
         $rolesDirectlyLinkedToResource = $roleRepository->findRolesDirectlyLinkedToResource($resource);
 
@@ -222,11 +222,11 @@ class ACL
      */
     public function rebuildAuthorizations()
     {
-        $roleRepository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Role');
+        $roleRepository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Role');
 
         // Clear
-        $this->entityManager->createQuery('DELETE Mobile5\AclBundle\Entity\Authorization')->execute();
-        $this->entityManager->clear('Mobile5\AclBundle\Entity\Authorization');
+        $this->entityManager->createQuery('DELETE Edweld\AclBundle\Entity\Authorization')->execute();
+        $this->entityManager->clear('Edweld\AclBundle\Entity\Authorization');
 
         // Regenerate
         foreach ($roleRepository->findAll() as $role) {

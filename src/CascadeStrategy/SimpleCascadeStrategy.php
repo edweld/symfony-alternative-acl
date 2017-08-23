@@ -3,7 +3,7 @@
 namespace Edweld\AclBundle\CascadeStrategy;
 
 use Doctrine\ORM\EntityManager;
-use Mobile5\AclBundle\Entity\Authorization;
+use Edweld\AclBundle\Entity\Authorization;
 use Edweld\AclBundle\Entity\ResourceInterface;
 use Edweld\AclBundle\Repository\AuthorizationRepository;
 use Edweld\AclBundle\ResourceGraph\CascadingResourceGraphTraverser;
@@ -34,7 +34,7 @@ class SimpleCascadeStrategy implements CascadeStrategy
         $this->resourceGraphTraverser = new ResourceGraphTraverserDispatcher();
         // Default traverser for CascadingResource
         $this->resourceGraphTraverser->setResourceGraphTraverser(
-            'Mobile5\AclBundle\Model\CascadingResource',
+            'Edweld\AclBundle\Model\CascadingResource',
             new CascadingResourceGraphTraverser($entityManager, $this->resourceGraphTraverser)
         );
     }
@@ -61,7 +61,7 @@ class SimpleCascadeStrategy implements CascadeStrategy
     public function processNewResource(ResourceInterface $resource)
     {
         /** @var AuthorizationRepository $repository */
-        $repository = $this->entityManager->getRepository('Mobile5\AclBundle\Entity\Authorization');
+        $repository = $this->entityManager->getRepository('Edweld\AclBundle\Entity\Authorization');
 
         $parentResources = $this->resourceGraphTraverser->getAllParentResources($resource);
 

@@ -71,7 +71,7 @@ class ACLSetup
      * @param string $class
      * @param string $shortName
      *
-     * @throws \InvalidArgumentException The given class doesn't extend Mobile5\AclBundle\Entity\Role
+     * @throws \InvalidArgumentException The given class doesn't extend Edweld\AclBundle\Entity\Role
      */
     public function registerRoleClass($class, $shortName)
     {
@@ -85,7 +85,7 @@ class ACLSetup
      *
      * @param string $class
      *
-     * @throws \InvalidArgumentException The given class doesn't extend Mobile5\AclBundle\Entity\Actions
+     * @throws \InvalidArgumentException The given class doesn't extend Edweld\AclBundle\Entity\Actions
      */
     public function setActionsClass($class)
     {

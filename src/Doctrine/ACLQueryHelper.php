@@ -49,7 +49,7 @@ class ACLQueryHelper
         }
 
         $qb->innerJoin(
-            'Mobile5\AclBundle\Entity\Authorization',
+            'Edweld\AclBundle\Entity\Authorization',
             'authorization',
             'WITH',
             $entityAlias . '.id = authorization.entityId'

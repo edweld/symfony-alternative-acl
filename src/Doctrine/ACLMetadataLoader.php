@@ -34,12 +34,12 @@ class ACLMetadataLoader
      * @param string $class
      * @param string $shortName
      *
-     * @throws \InvalidArgumentException The given class doesn't extend Mobile5\AclBundle\Model\Role
+     * @throws \InvalidArgumentException The given class doesn't extend Edweld\AclBundle\Model\Role
      */
     public function registerRoleClass($class, $shortName)
     {
-        if (! is_subclass_of($class, 'Mobile5\AclBundle\Entity\Role')) {
-            throw new \InvalidArgumentException(sprintf('%s doesn\'t extend Mobile5\AclBundle\Entity\Role', $class));
+        if (! is_subclass_of($class, 'Edweld\AclBundle\Entity\Role')) {
+            throw new \InvalidArgumentException(sprintf('%s doesn\'t extend Edweld\AclBundle\Entity\Role', $class));
         }
 
         $this->roles[$shortName] = $class;
@@ -52,12 +52,12 @@ class ACLMetadataLoader
      *
      * @param string $class
      *
-     * @throws \InvalidArgumentException The given class doesn't extend Mobile5\AclBundle\Model\Actions
+     * @throws \InvalidArgumentException The given class doesn't extend Edweld\AclBundle\Model\Actions
      */
     public function setActionsClass($class)
     {
-        if (! is_subclass_of($class, 'Mobile5\AclBundle\Entity\Actions')) {
-            throw new \InvalidArgumentException('The given class doesn\'t extend Mobile5\AclBundle\Entity\Actions');
+        if (! is_subclass_of($class, 'Edweld\AclBundle\Entity\Actions')) {
+            throw new \InvalidArgumentException('The given class doesn\'t extend Edweld\AclBundle\Entity\Actions');
         }
 
         $this->actionsClass = $class;
@@ -71,11 +71,11 @@ class ACLMetadataLoader
         /** @var ClassMetadata $metadata */
         $metadata = $eventArgs->getClassMetadata();
 
-        if ($metadata->getName() === 'Mobile5\AclBundle\Entity\Role') {
+        if ($metadata->getName() === 'Edweld\AclBundle\Entity\Role') {
             $metadata->setDiscriminatorMap($this->roles);
         }
 
-        if (($this->actionsClass !== null) && ($metadata->getName() === 'Mobile5\AclBundle\Entity\Authorization')) {
+        if (($this->actionsClass !== null) && ($metadata->getName() === 'Edweld\AclBundle\Entity\Authorization')) {
             $this->remapActions($metadata, $eventArgs->getEntityManager()->getMetadataFactory());
         }
     }

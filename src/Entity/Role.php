@@ -14,7 +14,7 @@ use AppBundle\Entity\User;
 /**
  * Role.
  *
- * @ORM\Entity(repositoryClass="Mobile5\AclBundle\Repository\RoleRepository")
+ * @ORM\Entity(repositoryClass="Edweld\AclBundle\Repository\RoleRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\Table(name="ACL_Role")
@@ -39,7 +39,7 @@ abstract class Role implements RoleInterface
 
     /**
      * @var Authorization[]|Collection
-     * @ORM\OneToMany(targetEntity="Mobile5\AclBundle\Entity\Authorization", mappedBy="role", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Edweld\AclBundle\Entity\Authorization", mappedBy="role", fetch="EXTRA_LAZY")
      */
     protected $authorizations;
 

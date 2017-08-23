@@ -99,7 +99,7 @@ class AuthorizationRepository extends EntityRepository
         }
 
         $dql = "SELECT count(authorization)
-                FROM Mobile5\\AclBundle\\Entity\\Authorization authorization
+                FROM Edweld\\AclBundle\\Entity\\Authorization authorization
                 WHERE authorization.entityId = :entityId
                     AND authorization.entityClass = :entityClass
                     AND authorization.securityIdentity = :securityIdentity
@@ -125,7 +125,7 @@ class AuthorizationRepository extends EntityRepository
     public function isAllowedOnEntityClass(SecurityIdentityInterface $identity, $action, $entityClass)
     {
         $dql = "SELECT count(authorization)
-                FROM Mobile5\\AclBundle\\Entity\\Authorization authorization
+                FROM Edweld\\AclBundle\\Entity\\Authorization authorization
                 WHERE authorization.entityClass = :entityClass
                     AND authorization.securityIdentity = :securityIdentity
                     AND authorization.actions.$action = true";

@@ -14,7 +14,7 @@ use AppBundle\Entity\User;
 /**
  * Authorization of a security identity to do something on a resource.
  *
- * @ORM\Entity(readOnly=true, repositoryClass="Mobile5\AclBundle\Repository\AuthorizationRepository")
+ * @ORM\Entity(readOnly=true, repositoryClass="Edweld\AclBundle\Repository\AuthorizationRepository")
  * @ORM\Table(name="ACL_Authorization", indexes={
  *     @ORM\Index(name="is_allowed", columns={"entity_id", "entity_class", "securityIdentity_id"}),
  *     @ORM\Index(name="root_authorizations", columns={"parentAuthorization_id", "entity_id", "entity_class"})
@@ -43,7 +43,7 @@ class Authorization
 
     /**
      * @var SecurityIdentityInterface
-     * @ORM\ManyToOne(targetEntity="Mobile5\aclBundle\Entity\SecurityIdentityInterface")
+     * @ORM\ManyToOne(targetEntity="Edweld\aclBundle\Entity\SecurityIdentityInterface")
      * @ORM\JoinColumn(name="securityIdentity_id", nullable=false, onDelete="CASCADE")
      */
     protected $securityIdentity;
@@ -73,14 +73,14 @@ class Authorization
 
     /**
      * @var Authorization
-     * @ORM\ManyToOne(targetEntity="Mobile5\AclBundle\Entity\Authorization", inversedBy="childAuthorizations")
+     * @ORM\ManyToOne(targetEntity="Edweld\AclBundle\Entity\Authorization", inversedBy="childAuthorizations")
      * @ORM\JoinColumn(name="parentAuthorization_id", onDelete="CASCADE")
      */
     protected $parentAuthorization;
 
     /**
      * @var Authorization[]|Collection
-     * @ORM\OneToMany(targetEntity="Mobile5\AclBundle\Entity\Authorization", mappedBy="parentAuthorization")
+     * @ORM\OneToMany(targetEntity="Edweld\AclBundle\Entity\Authorization", mappedBy="parentAuthorization")
      */
     protected $childAuthorizations;
 
