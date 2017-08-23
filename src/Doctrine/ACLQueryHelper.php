@@ -9,7 +9,7 @@ use Edweld\AclBundle\Entity\Authorization;
  * Helper for the Doctrine query builder to use ACL.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class ACLQueryHelper
 {

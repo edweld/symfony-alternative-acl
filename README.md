@@ -1,6 +1,8 @@
 Installation
 =====
-I wanted to create an ACL which I could use on a site search. I a complex data structure where users have a many to many relationship with groups or circles and and circles have one to many events. Users can only create or view events and users that belong to a circle, circles are created dynamically so I needed something a little more advanced than symfony acl and I needed to filter domain level entities on a sql query level.
+I needed to create an ACL which I could use on a site wide search on a high traffic web app. I have a complex data structure where users have a many to many relationship with groups (or product specific defined as circles) and circles can have one to many events. Users can only create or view events and users that belong a circle, circles are created dynamically so I needed something a little more advanced than symfony-acl as I needed to filter domain level entities on a sql query level. Most of the credit goes to Matthieu Napoli for the inital concept, my intention is to share and evolve it with the Symfony community as it really is such an excellent concept. It's only available @dev currently so feel free to fork/contribute.  
+
+Code is on github: https://github.com/edweld/symfony-alternative-acl
 
 1. Add to composer
 

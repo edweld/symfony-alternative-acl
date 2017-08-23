@@ -8,7 +8,7 @@ use Edweld\AclBundle\Entity\ResourceInterface;
  * Traverses a resource graph.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 interface ResourceGraphTraverser
 {

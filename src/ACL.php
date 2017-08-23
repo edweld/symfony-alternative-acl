@@ -24,6 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Manages ACL.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class ACL
 {

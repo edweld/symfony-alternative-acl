@@ -9,7 +9,7 @@ use Edweld\AclBundle\Entity\ResourceInterface;
  * Resource that cascade authorizations.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 interface CascadingResource extends ResourceInterface
 {

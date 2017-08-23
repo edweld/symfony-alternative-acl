@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Loader;
  * This is the class that loads and manages your bundle configuration.
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class EdweldAclExtension extends Extension
 {

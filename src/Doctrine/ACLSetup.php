@@ -11,7 +11,7 @@ use AppBundle\Entity\User;
  * Configures the entity manager.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class ACLSetup
 {

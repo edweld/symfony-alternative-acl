@@ -13,7 +13,7 @@ use Edweld\AclBundle\Entity\Role;
  * @property Role[]|Collection $roles
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 trait SecurityIdentityTrait
 {
