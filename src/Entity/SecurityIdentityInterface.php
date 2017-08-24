@@ -2,12 +2,9 @@
 
 namespace Edweld\AclBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Security identity.
  *
- * @ORM\Embeddable
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  * @author Ed Weld <edweld@gmail.com>
  */
@@ -28,10 +25,10 @@ interface SecurityIdentityInterface
     /**
      * @param Role $role
      */
-    public function addRole(Role $role);
+    public function addRole( $role);
 
     /**
      * @param Role $role
      */
-    public function removeRole(Role $role);
+    public function removeRole( $role);
 }

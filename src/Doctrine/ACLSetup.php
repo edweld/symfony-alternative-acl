@@ -5,7 +5,7 @@ namespace Edweld\AclBundle\Doctrine;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Tools\ResolveTargetEntityListener;
-use AppBundle\Entity\User;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Configures the entity manager.
@@ -42,7 +42,7 @@ class ACLSetup
 
         // Configure which entity implements the SecurityIdentityInterface
         $rtel = new ResolveTargetEntityListener();
-        $rtel->addResolveTargetEntity('AppBundle\\Entity\\User', $this->securityIdentityClass, []);
+        $rtel->addResolveTargetEntity('Edweld\\AclBundle\\Entity\\SecurityIdentityInterface', $this->securityIdentityClass, []);
         $evm->addEventListener(Events::loadClassMetadata, $rtel);
 
         // Register the metadata loader

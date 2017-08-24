@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Edweld\AclBundle\Entity\ResourceInterface;
 use Edweld\AclBundle\Entity\Actions;
 use Edweld\AclBundle\Entity\Role;
-use AppBundle\Entity\User;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Authorization of a security identity to do something on a resource.

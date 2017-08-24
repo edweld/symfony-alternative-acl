@@ -7,9 +7,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Edweld\AclBundle\ACL;
 use Edweld\AclBundle\Entity\Authorization;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
-use AppBundle\Entity\User;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Role.
@@ -33,7 +34,7 @@ abstract class Role implements RoleInterface
 
     /**
      * @var SecurityIdentityInterface
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles")
+     * @ORM\ManyToOne(targetEntity="Edweld\AclBundle\Entity\SecurityIdentityInterface", inversedBy="roles")
      */
     protected $securityIdentity;
 

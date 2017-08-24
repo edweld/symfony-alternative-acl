@@ -31,18 +31,24 @@ public function registerBundles()
 3. Add Doctrine mappings in your config
 
 ```
-// app/config/config.yml
-  orm:
-    auto_generate_proxy_classes: '%kernel.debug%'
-      entity_managers:
-        default:
-          mappings:
-                    //..
-            acl_mapping:
-              type: annotation
-              prefix: Edweld\AclBundle\Entity\
-              dir: "%kernel.root_dir%/../vendor/edweld/aclbundle/src/Entity/"
-              is_bundle: true
+# app/config/config.yml
+doctrine:
+    # ...
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        entity_managers:
+            default:
+                mappings:
+                    app:
+                        type: annotation
+                        prefix: Alumnet\CoreBundle
+                        dir: "%kernel.root_dir%/../src/AppBundle/Entity/"
+                        is_bundle: false
+                    edweld_acl:
+                        type: annotation
+                        prefix: Edweld\AclBundle\Entity\
+                        dir: "%kernel.root_dir%/../vendor/edweld/aclbundle/src/Entity/"
+                        is_bundle: false
 ```
 
 4. Enable symfony acl
