@@ -21,8 +21,8 @@ use AppBundle\Entity\User;
  * })
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- */
  * @author Ed Weld <edweld@gmail.com>
+ */
 class Authorization
 {
     /**
