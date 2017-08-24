@@ -224,8 +224,6 @@ class AclService {
                 return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::DELETE, $object);
                 break;
             case 'edit' :
-                $s = $this->getService('edweld_acl_service');
-                var_dump(get_class($s));
                 return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::EDIT, $object);
                 break;
             case "view":
