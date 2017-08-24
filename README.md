@@ -6,6 +6,8 @@ Feel free to fork/contribute.
 
 Code is on github: https://github.com/edweld/symfony-alternative-acl
 
+An example implmentation can also be found https://github.com/edweld/symfony-acl-with-query-helper-example
+
 1. Add to composer
 
 ```
