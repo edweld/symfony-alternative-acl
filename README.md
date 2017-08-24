@@ -1,6 +1,8 @@
 Installation
 =====
-I needed to create an ACL which I could use on a site wide search on a high traffic web app. I have a complex data structure where users have a many to many relationship with groups (or product specific defined as circles) and circles can have one to many events. Users can only create or view events and users that belong a circle, circles are created dynamically so I needed something a little more advanced than symfony-acl as I needed to filter domain level entities on a sql query level. Most of the credit goes to Matthieu Napoli for the inital concept, my intention is to share and evolve it with the Symfony community as it really is such an excellent concept. It's only available @dev currently so feel free to fork/contribute.  
+I needed to create an ACL which I could use on a site wide search on a high traffic web app. I have a complex data structure where users have a many to many relationship with groups (or product specific defined as circles) and circles can have one to many events. Users can only create or view events and users that belong a circle, circles are created dynamically so I needed something a little more advanced than symfony-acl as I needed to filter domain level entities on a sql query level. Most of the credit goes to Matthieu Napoli for the inital concept, my intention is to share and evolve it with the Symfony community as it really is such an excellent concept. It's only available @dev currently.
+
+Feel free to fork/contribute.  
 
 Code is on github: https://github.com/edweld/symfony-alternative-acl
 
@@ -144,7 +146,20 @@ class Circle implements EntityResource
      */
     protected $objectRoles;
 ```
-And implement with the service container
+Configure roles entities in application config
+
+```
+// app/config/config.yml
+edweld_acl: 
+    identities:
+        - { 'role':'circleViewer', 'class':'AppBundle\Role\CircleViewerRole' }
+        - { 'role':'circleEditor', 'class':'AppBundle\Role\CircleEditorRole' }
+        - { 'role':'eventEditor', 'class':'AppBundle\Role\EventEditorRole' }
+        - { 'role':'eventViewer', 'class':'AppBundle\Role\EventViewerRole' }
+        - { 'role':'userViewer', 'class':'AppBundle\Role\UserViewerRole' }
+```
+
+Grant and revoke access using service container
 
 ```
 use AppBundle\Entity\CircleEditorRole;

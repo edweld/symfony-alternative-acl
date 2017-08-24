@@ -23,8 +23,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('identities')
-                    ->beforeNormalization()->ifString()->then(function ($v) { return array($v); })->end()
-                    ->prototype('scalar')->end()
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('role')->end()
+                            ->scalarNode('class')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
 
