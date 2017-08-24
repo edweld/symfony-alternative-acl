@@ -204,7 +204,7 @@ use Edweld\AclBundle\Entity\Actions;
 
 /**
  * 
- * @author Ed Weld <edweld@gmail.com>
+ * @author Ed Weld <edward.weld@mobile-5.com>
  */
 
 class AclService {
@@ -213,7 +213,7 @@ class AclService {
 
     public function getAcl()
     {
-        return $this->getService('edweld_acl.acl');
+        return $this->getService('edweld_acl_service');
     }
 
     public function isAllowed($action, $object)
@@ -221,14 +221,16 @@ class AclService {
         switch($action)
         {
             case 'delete' :
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::DELETE, $object);
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::DELETE, $object);
                 break;
             case 'edit' :
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::EDIT, $object);
+                $s = $this->getService('edweld_acl_service');
+                var_dump(get_class($s));
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::EDIT, $object);
                 break;
             case "view":
                 var_dump('IS VIEW');
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::VIEW, $object);
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::VIEW, $object);
                 break;
         }
         
@@ -242,10 +244,10 @@ class AclService {
         $users = $circle->getUsers();
         $owner = $this->getUser();
 
-        $this->getService('edweld_acl.acl')->grant($owner, new EventEditorRole($owner, $event));
+        $this->getService('edweld_acl_service')->grant($owner, new EventEditorRole($owner, $event));
 
         foreach($users as $user){
-        	$this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+        	$this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
         }
     }
     
@@ -258,14 +260,14 @@ class AclService {
         $users = $circle->getUsers();
 
         foreach($users as $user){
-            $this->getService('edweld_acl.acl')->grant($user, new UserViewerRole($user, $userObject));
-            $this->getService('edweld_acl.acl')->grant($userObject, new UserViewerRole($userObject, $user));
+            $this->getService('edweld_acl_service')->grant($user, new UserViewerRole($user, $userObject));
+            $this->getService('edweld_acl_service')->grant($userObject, new UserViewerRole($userObject, $user));
         }
         foreach($circle->getEvents() as $event)
         {
-            $this->getService('edweld_acl.acl')->grant($userObject, new EventViewerRole($userObject, $event));
+            $this->getService('edweld_acl_service')->grant($userObject, new EventViewerRole($userObject, $event));
         }
-        $this->getService('edweld_acl.acl')->grant($userObject, new CircleViewerRole($userObject, $circle));
+        $this->getService('edweld_acl_service')->grant($userObject, new CircleViewerRole($userObject, $circle));
 
     }
 
@@ -276,13 +278,13 @@ class AclService {
     public function addAclAllCirclesToEvent($event)
     {
         $owner = $this->getUser();
-        $this->getService('edweld_acl.acl')->grant($owner, new EventEditorRole($owner, $event));
+        $this->getService('edweld_acl_service')->grant($owner, new EventEditorRole($owner, $event));
 
         foreach($owner->getCircles() as $circle)
         {
             foreach($circle->getUsers() as $user)
             {
-                $this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+                $this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
             }
         }
     }
@@ -292,12 +294,22 @@ class AclService {
     public function addAclUserArrayToEvent($event, $users){
 
         $owner = $this->getUser();
-        $this->getService('edweld_acl.acl')->grant($user, new EventEditorRole($user, $event));
+        $this->getService('edweld_acl_service')->grant($user, new EventEditorRole($user, $event));
 
         foreach($users as $user)
         {
-            $this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+            $this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
         }
+    }
+
+    public function removeUserFromCircle($user, $circle)
+    {
+        
+    }
+
+    public function removeCircle($circle)
+    {
+    	
     }
 }
 ```
