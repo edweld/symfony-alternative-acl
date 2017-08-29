@@ -12,7 +12,7 @@ use Edweld\AclBundle\Entity\EntityResource;
  * Listens the entity manager for new resources.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class EntityResourcesListener implements EventSubscriber
 {

@@ -5,9 +5,8 @@ namespace Edweld\AclBundle\Entity;
 /**
  * Security identity.
  *
- * @ORM\Embeddable
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 
 
@@ -26,10 +25,10 @@ interface SecurityIdentityInterface
     /**
      * @param Role $role
      */
-    public function addRole(Role $role);
+    public function addRole( $role);
 
     /**
      * @param Role $role
      */
-    public function removeRole(Role $role);
+    public function removeRole( $role);
 }

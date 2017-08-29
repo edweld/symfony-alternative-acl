@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This is the class that validates and merges configuration from your app/config files.
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -20,6 +20,17 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('edweld_acl');
+        $rootNode
+            ->children()
+                ->arrayNode('identities')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('role')->end()
+                            ->scalarNode('class')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         //change this to key value pairs
         $rootNode

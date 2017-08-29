@@ -13,7 +13,7 @@ use Edweld\AclBundle\Entity\ResourceInterface;
  * Authorizations repository.
  *
  * @author Valentin Claras <dev.myclabs.acl@valentin.claras.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class RoleRepository extends EntityRepository
 {

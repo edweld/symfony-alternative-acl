@@ -8,7 +8,7 @@ use Edweld\AclBundle\Entity\EntityResource;
 
 /**
  * Strategy that defines the cascade of authorizations between resources.
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 interface CascadeStrategy
 {

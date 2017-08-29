@@ -7,9 +7,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Edweld\AclBundle\ACL;
 use Edweld\AclBundle\Entity\Authorization;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
-use AppBundle\Entity\User;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Role.
@@ -20,7 +21,7 @@ use AppBundle\Entity\User;
  * @ORM\Table(name="ACL_Role")
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 abstract class Role implements RoleInterface
 {
