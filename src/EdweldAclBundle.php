@@ -11,7 +11,6 @@ class EdweldAclBundle extends Bundle
 	//@see https://symfony.com/doc/current/doctrine/mapping_model_classes.html 
 	public function build(ContainerBuilder $container)
 	{
-
 		parent::build($container);
 
 	}

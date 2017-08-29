@@ -39,13 +39,32 @@ public function registerBundles()
               is_bundle: true
 ```
 
-4. Enable symfony acl
+4. Map your security identity entity to the Acl Doctrine Security interface, the security entity is the user entity you use in authentication, in my case AppBundle\Entity\User.php This enables the bundle to use an interface to define the security.
+
+```
+// app/config/config.yml
+  orm:
+      resolve_target_entities:
+          Edweld\AclBundle\Entity\SecurityIdentityInterface: AppBundle\Entity\User
+```
+We then map our security interface to our user security identity
+
+```
+// appBundle/Entity/User.php
+
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
+
+class User implements SecurityIdentityInterface{
+//..
+```
+
+5. Enable symfony acl
 
 ```
 php bin/console init:acl
 
 ```
-5. Add the following to you security configuration
+6. Add the following to you security configuration
 
 ```
 // app/config/security.yml

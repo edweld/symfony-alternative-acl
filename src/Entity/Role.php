@@ -33,7 +33,7 @@ abstract class Role implements RoleInterface
 
     /**
      * @var SecurityIdentityInterface
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="roles")
+     * @ORM\ManyToOne(targetEntity="Edweld\aclBundle\Entity\SecurityIdentityInterface", inversedBy="roles")
      */
     protected $securityIdentity;
 

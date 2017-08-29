@@ -47,22 +47,21 @@ class ACL
     {
 
         $this->container = $container;
+    
         $this->entityManager = $this->getDoctrine()->getManager();
         $this->cascadeStrategy = new SimpleCascadeStrategy( $this->entityManager );
 
         $aclSetup = new ACLSetup($this->entityManager);
 
         $acl = new ACL($this->entityManager);
+        
         $aclSetup->setSecurityIdentityClass('Edweld\AclBundle\Entity\SecurityIdentityInterface');
 
-        $aclSetup->registerRoleClass('AppBundle\Role\CircleViewerRole', 'circleViewer');
-        $aclSetup->registerRoleClass('AppBundle\Role\CircleEditorRole', 'circleEditor');
-
-        $aclSetup->registerRoleClass('AppBundle\Role\EventViewerRole', 'eventViewer');
-        $aclSetup->registerRoleClass('AppBundle\Role\EventEditorRole', 'eventEditor');
-
-        $aclSetup->registerRoleClass('AppBundle\Role\EventViewerRole', 'userViewer');
-
+        $config = $this->container->getParameter('edweld_acl');
+        foreach($config['identities'] as $identity){
+            $aclSetup->registerRoleClass($identity['class'], $identity['role']);        
+        }
+        
         $acl = new ACL($this->entityManager);
     }
 
