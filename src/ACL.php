@@ -61,7 +61,6 @@ class ACL
         $config = $this->container->getParameter('edweld_acl');
         foreach($config['identities'] as $identity){
             $aclSetup->registerRoleClass($identity['class'], $identity['role']);        
-
         } 
         $acl = new ACL($this->entityManager);
     }
