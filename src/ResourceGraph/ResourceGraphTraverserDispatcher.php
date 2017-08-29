@@ -9,7 +9,7 @@ use Edweld\AclBundle\Entity\ResourceInterface;
  * This is a traverser that dispatches to other traversers based on the resource class.
  *
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class ResourceGraphTraverserDispatcher implements ResourceGraphTraverser
 {

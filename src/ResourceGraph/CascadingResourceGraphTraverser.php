@@ -12,7 +12,7 @@ use Edweld\AclBundle\Entity\ResourceInterface;
  * CascadingResource don't return all sub-resources (only the direct ones), so we need to do
  * the traversal recursively in this class.
  *
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  */
 class CascadingResourceGraphTraverser implements ResourceGraphTraverser
 {

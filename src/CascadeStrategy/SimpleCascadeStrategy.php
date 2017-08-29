@@ -12,7 +12,7 @@ use Edweld\AclBundle\ResourceGraph\ResourceGraphTraverserDispatcher;
 
 /**
  * Simple cascade: authorizations are cascaded from a resource to its sub-resources.
- * @author Ed Weld <edward.weld@mobile-5.com>
+ * @author Ed Weld <edweld@gmail.com>
  *
  */
 class SimpleCascadeStrategy implements CascadeStrategy

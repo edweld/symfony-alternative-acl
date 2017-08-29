@@ -1,6 +1,12 @@
 Installation
 =====
-I wanted to create an ACL which I could use on a site search. I a complex data structure where users have a many to many relationship with groups or circles and and circles have one to many events. Users can only create or view events and users that belong to a circle, circles are created dynamically so I needed something a little more advanced than symfony acl and I needed to filter domain level entities on a sql query level.
+I needed to create an ACL which I could use on a site wide search on a high traffic web app. I have a complex data structure where users have a many to many relationship with groups (or product specific defined as circles) and circles can have one to many events. Users can only create or view events and users that belong a circle, circles are created dynamically so I needed something a little more advanced than symfony-acl as I needed to filter domain level entities on a sql query level. Most of the credit goes to Matthieu Napoli for the inital concept, my intention is to share and evolve it with the Symfony community as it really is such an excellent concept. It's only available @dev currently.
+
+Feel free to fork/contribute.  
+
+Code is on github: https://github.com/edweld/symfony-alternative-acl
+
+An example implmentation can also be found https://github.com/edweld/symfony-acl-with-query-helper-example
 
 1. Add to composer
 
@@ -25,18 +31,24 @@ public function registerBundles()
 3. Add Doctrine mappings in your config
 
 ```
-// app/config/config.yml
-  orm:
-    auto_generate_proxy_classes: '%kernel.debug%'
-      entity_managers:
-        default:
-          mappings:
-                    //..
-            acl_mapping:
-              type: annotation
-              prefix: Edweld\AclBundle\Entity\
-              dir: "%kernel.root_dir%/../vendor/edweld/aclbundle/src/Entity/"
-              is_bundle: true
+# app/config/config.yml
+doctrine:
+    # ...
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        entity_managers:
+            default:
+                mappings:
+                    app:
+                        type: annotation
+                        prefix: Alumnet\CoreBundle
+                        dir: "%kernel.root_dir%/../src/AppBundle/Entity/"
+                        is_bundle: false
+                    edweld_acl:
+                        type: annotation
+                        prefix: Edweld\AclBundle\Entity\
+                        dir: "%kernel.root_dir%/../vendor/edweld/aclbundle/src/Entity/"
+                        is_bundle: false
 ```
 
 4. Map your security identity entity to the Acl Doctrine Security interface, the security entity is the user entity you use in authentication, in my case AppBundle\Entity\User.php This enables the bundle to use an interface to define the security.
@@ -161,7 +173,20 @@ class Circle implements EntityResource
      */
     protected $objectRoles;
 ```
-And implement with the service container
+Configure roles entities in application config
+
+```
+// app/config/config.yml
+edweld_acl: 
+    identities:
+        - { 'role':'circleViewer', 'class':'AppBundle\Role\CircleViewerRole' }
+        - { 'role':'circleEditor', 'class':'AppBundle\Role\CircleEditorRole' }
+        - { 'role':'eventEditor', 'class':'AppBundle\Role\EventEditorRole' }
+        - { 'role':'eventViewer', 'class':'AppBundle\Role\EventViewerRole' }
+        - { 'role':'userViewer', 'class':'AppBundle\Role\UserViewerRole' }
+```
+
+Grant and revoke access using service container
 
 ```
 use AppBundle\Entity\CircleEditorRole;
@@ -206,7 +231,7 @@ use Edweld\AclBundle\Entity\Actions;
 
 /**
  * 
- * @author Ed Weld <edweld@gmail.com>
+ * @author Ed Weld <edward.weld@mobile-5.com>
  */
 
 class AclService {
@@ -215,7 +240,7 @@ class AclService {
 
     public function getAcl()
     {
-        return $this->getService('edweld_acl.acl');
+        return $this->getService('edweld_acl_service');
     }
 
     public function isAllowed($action, $object)
@@ -223,14 +248,14 @@ class AclService {
         switch($action)
         {
             case 'delete' :
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::DELETE, $object);
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::DELETE, $object);
                 break;
             case 'edit' :
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::EDIT, $object);
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::EDIT, $object);
                 break;
             case "view":
                 var_dump('IS VIEW');
-                return $this->getService('edweld_acl.acl')->isAllowed($this->getUser(), Actions::VIEW, $object);
+                return $this->getService('edweld_acl_service')->isAllowed($this->getUser(), Actions::VIEW, $object);
                 break;
         }
         
@@ -244,10 +269,10 @@ class AclService {
         $users = $circle->getUsers();
         $owner = $this->getUser();
 
-        $this->getService('edweld_acl.acl')->grant($owner, new EventEditorRole($owner, $event));
+        $this->getService('edweld_acl_service')->grant($owner, new EventEditorRole($owner, $event));
 
         foreach($users as $user){
-        	$this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+        	$this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
         }
     }
     
@@ -260,14 +285,14 @@ class AclService {
         $users = $circle->getUsers();
 
         foreach($users as $user){
-            $this->getService('edweld_acl.acl')->grant($user, new UserViewerRole($user, $userObject));
-            $this->getService('edweld_acl.acl')->grant($userObject, new UserViewerRole($userObject, $user));
+            $this->getService('edweld_acl_service')->grant($user, new UserViewerRole($user, $userObject));
+            $this->getService('edweld_acl_service')->grant($userObject, new UserViewerRole($userObject, $user));
         }
         foreach($circle->getEvents() as $event)
         {
-            $this->getService('edweld_acl.acl')->grant($userObject, new EventViewerRole($userObject, $event));
+            $this->getService('edweld_acl_service')->grant($userObject, new EventViewerRole($userObject, $event));
         }
-        $this->getService('edweld_acl.acl')->grant($userObject, new CircleViewerRole($userObject, $circle));
+        $this->getService('edweld_acl_service')->grant($userObject, new CircleViewerRole($userObject, $circle));
 
     }
 
@@ -278,13 +303,13 @@ class AclService {
     public function addAclAllCirclesToEvent($event)
     {
         $owner = $this->getUser();
-        $this->getService('edweld_acl.acl')->grant($owner, new EventEditorRole($owner, $event));
+        $this->getService('edweld_acl_service')->grant($owner, new EventEditorRole($owner, $event));
 
         foreach($owner->getCircles() as $circle)
         {
             foreach($circle->getUsers() as $user)
             {
-                $this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+                $this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
             }
         }
     }
@@ -294,12 +319,22 @@ class AclService {
     public function addAclUserArrayToEvent($event, $users){
 
         $owner = $this->getUser();
-        $this->getService('edweld_acl.acl')->grant($user, new EventEditorRole($user, $event));
+        $this->getService('edweld_acl_service')->grant($user, new EventEditorRole($user, $event));
 
         foreach($users as $user)
         {
-            $this->getService('edweld_acl.acl')->grant($user, new EventViewerRole($user, $event));
+            $this->getService('edweld_acl_service')->grant($user, new EventViewerRole($user, $event));
         }
+    }
+
+    public function removeUserFromCircle($user, $circle)
+    {
+        
+    }
+
+    public function removeCircle($circle)
+    {
+    	
     }
 }
 ```
