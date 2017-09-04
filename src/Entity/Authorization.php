@@ -43,7 +43,7 @@ class Authorization
 
     /**
      * @var SecurityIdentityInterface
-     * @ORM\ManyToOne(targetEntity="Edweld\aclBundle\Entity\SecurityIdentityInterface")
+     * @ORM\ManyToOne(targetEntity="Edweld\AclBundle\Entity\SecurityIdentityInterface")
      * @ORM\JoinColumn(name="securityIdentity_id", nullable=false, onDelete="CASCADE")
      */
     protected $securityIdentity;

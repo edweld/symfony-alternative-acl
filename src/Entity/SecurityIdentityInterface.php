@@ -2,6 +2,7 @@
 
 namespace Edweld\AclBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Security identity.
  *

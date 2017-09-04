@@ -10,7 +10,6 @@ use Edweld\AclBundle\Entity\Authorization;
 use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
-use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Role.
