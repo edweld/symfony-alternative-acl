@@ -11,7 +11,7 @@ An example implmentation can also be found https://github.com/edweld/symfony-acl
 1. Add to composer
 
 ```
-composer require "edweld/aclbundle @dev"
+composer require "edweld/aclbundle"
 ```
 
 2. Register the bundle in app/AppKernel.php
