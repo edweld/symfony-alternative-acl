@@ -1,5 +1,5 @@
 services:
-  edweld_acl_service.acl:
+  edweld_acl_service:
     class: Edweld\AclBundle\ACL
     calls:
       - [setContainer, ["@service_container"]]
