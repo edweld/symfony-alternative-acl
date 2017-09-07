@@ -126,7 +126,7 @@ class ACL
      */
     public function grant( $identity, Role $role)
     {
-        $identity->addRole($role);
+        $identity->addPermission($role);
         $this->entityManager->persist($role);
         $this->entityManager->flush($role);
 
@@ -144,7 +144,7 @@ class ACL
      */
     public function revoke( $identity, Role $role)
     {
-        $identity->removeRole($role);
+        $identity->removePermission($role);
         $this->entityManager->remove($role);
 
         // Authorizations are deleted in cascade in database

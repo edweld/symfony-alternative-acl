@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\ClassMetadataFactory;
 use Edweld\AclBundle\Entity\Actions;
 use Edweld\AclBundle\Entity\Role;
 use Edweld\AclBundle\Entity\Authorization;
+use Edweld\AclBundle\Entity\SecurityIdentityInterface;
 
 /**
  * Loads metadata relative to ACL in Doctrine.

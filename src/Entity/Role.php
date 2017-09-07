@@ -33,13 +33,13 @@ abstract class Role implements RoleInterface
 
     /**
      * @var SecurityIdentityInterface
-     * @ORM\ManyToOne(targetEntity="Edweld\AclBundle\Entity\SecurityIdentityInterface", inversedBy="roles")
+     * @ORM\ManyToOne(targetEntity="Edweld\AclBundle\Entity\SecurityIdentityInterface", inversedBy="permission")
      */
     protected $securityIdentity;
 
     /**
      * @var Authorization[]|Collection
-     * @ORM\OneToMany(targetEntity="Edweld\AclBundle\Entity\Authorization", mappedBy="role", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Edweld\AclBundle\Entity\Authorization", mappedBy="permission", fetch="EXTRA_LAZY")
      */
     protected $authorizations;
 

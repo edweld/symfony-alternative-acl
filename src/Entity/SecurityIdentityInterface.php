@@ -21,15 +21,15 @@ interface SecurityIdentityInterface
     /**
      * @return Role[]
      */
-    public function getRoles();
+    public function getPermissions();
 
     /**
      * @param Role $role
      */
-    public function addRole( $role);
+    public function addPermission( $role);
 
     /**
      * @param Role $role
      */
-    public function removeRole( $role);
+    public function removePermission( $role);
 }
