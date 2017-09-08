@@ -70,13 +70,7 @@ class User implements SecurityIdentityInterface{
 //..
 ```
 
-5. Enable symfony acl
-
-```
-php bin/console init:acl
-
-```
-6. Add the following to you security configuration
+5. Add the following to you security configuration
 
 ```
 // app/config/security.yml
@@ -148,6 +142,7 @@ class CircleEditorRole extends Role
             $this,
             new Actions([ 
                 Actions::VIEW,
+                Actions::CREATE,
                 Actions::EDIT, 
             ]),
             $this->circleObject
